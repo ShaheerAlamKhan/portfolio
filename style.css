@@ -1,20 +1,14 @@
-/* Root styles and custom properties */
-:root {
-    --color-accent: oklch(65% 50% 0);
-}
-
 /* Base styles */
-html {
-    accent-color: var(--color-accent);
-}
-
 body {
+    background: rgb(0, 0, 0);
+    color:white;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     line-height: 1.6;
     max-width: 100ch;
-    margin-inline: max(1em, (100% - 100ch) / 2);
+    margin-left: auto;
+    margin-right: auto;
     padding: 1em;
 }
 
@@ -22,6 +16,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.1;
     text-wrap: balance;
+    color:white
 }
 
 h1 {
@@ -30,7 +25,6 @@ h1 {
 
 /* Header styles */
 header {
-    background: #333;
     color: #fff;
     padding: 1rem 0;
     text-align: center;
@@ -40,27 +34,25 @@ header {
 nav {
     display: flex;
     justify-content: center;
-    background: #444;
-    border-bottom: 1px solid oklch(80% 3% 200);
     margin-bottom: 1em;
 }
 
 nav a {
     flex: 1;
-    color: inherit;
+    color: white;
     padding: 0.5em;
     text-decoration: none;
     text-align: center;
 }
 
 nav a:hover {
-    background-color: oklch(from var(--color-accent) 95% 5% h);
-    border-bottom: 0.4em solid var(--color-accent);
+    background-color: #484444;
+    border-bottom: 0.4em solid #6e2cde;
     padding-bottom: 0.1em;
 }
 
 nav a.current {
-    border-bottom: 0.4em solid oklch(80% 3% 200);
+    border-bottom: 0.4em solid #888;
     padding-bottom: 0.1em;
 }
 
@@ -84,6 +76,7 @@ form {
 }
 
 label {
+    color: white;
     display: grid;
     grid-template-columns: subgrid;
     grid-column: 1 / -1;
@@ -109,7 +102,7 @@ input, textarea, button {
     display: grid;
     grid-template-rows: auto auto 1fr;
     gap: 1em;
-    background: #f8f8f8;
+    background: #242424;
     padding: 1.5em;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -118,7 +111,7 @@ input, textarea, button {
 .projects article h2 {
     margin: 0;
     font-size: 1.4em;
-    color: var(--color-accent);
+    color: #ffffff;
 }
 
 .projects article img {
@@ -130,6 +123,7 @@ input, textarea, button {
 .projects article p {
     margin: 0;
     line-height: 1.6;
+    color: white;
 }
 
 /* Footer styles */
