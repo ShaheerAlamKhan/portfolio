@@ -12,7 +12,7 @@ body {
     padding: 1em;
 }
 
-/* Typography improvements */
+/* Typography */
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.1;
     text-wrap: balance;
@@ -23,14 +23,14 @@ h1 {
     font-size: 400%;
 }
 
-/* Header styles */
+/* Header */
 header {
     color: #fff;
     padding: 1rem 0;
     text-align: center;
 }
 
-/* Navigation styles */
+/* Navigation */
 nav {
     display: flex;
     justify-content: center;
@@ -56,19 +56,19 @@ nav a.current {
     padding-bottom: 0.1em;
 }
 
-/* Container styles */
+/* Container */
 .container {
     max-width: 1100px;
     margin: auto;
     padding: 2rem;
 }
 
-/* Section styles */
+/* Section */
 section {
     margin-bottom: 2rem;
 }
 
-/* Form styles */
+/* Form */
 form {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -88,7 +88,7 @@ input, textarea, button {
     box-sizing: border-box;
 }
 
-/* Projects grid layout */
+/* Projects grid */
 .projects {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
@@ -126,7 +126,7 @@ input, textarea, button {
     color: white;
 }
 
-/* Footer styles */
+/* Footer */
 footer {
     text-align: center;
     padding: 1rem 0;
