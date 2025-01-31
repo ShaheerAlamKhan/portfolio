@@ -189,3 +189,37 @@
     color: var(--text-color);
     border: 1px solid var(--text-color);
   }
+
+  #profile-stats {
+    width: 100%;
+    margin: 1rem 0;
+    text-align: center;
+  }
+  
+  .github-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 0;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  
+  .github-stats .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .github-stats dt {
+    font-size: 0.9em;
+    color: var(--nav-text);
+    margin-bottom: 0.25rem;
+  }
+  
+  .github-stats dd {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--nav-text);
+  }

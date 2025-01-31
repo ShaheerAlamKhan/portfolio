@@ -1,0 +1,74 @@
+[
+    {
+      "title": "Climate Data Visualisation",
+      "year": 2024,
+      "image": "../image/climate.svg",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque voluptatibus vitae reprehenderit necessitatibus commodi laborum incidunt deserunt veniam ratione tempore."
+    },
+    {
+      "title": "Recipe Analysis Project",
+      "year": 2024,
+      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+      "description": "Led data analysis of recipe popularity, performed exploratory data analysis, and developed machine learning models achieving 0.82 F1 score."
+    },
+    {
+      "title": "AI Networking Tool",
+      "year": 2023,
+      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+      "description": "Developed an AI-facilitated networking tool combining profile data and smart device locations, utilizing Pinecone and OpenAI's Embedding API."
+    },
+    {
+      "title": "Environmental Monitoring Drone",
+      "year": 2023,
+      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+      "description": "Led development of a drone system for detecting nitrogen pollution and volatile organic compounds with geolocation mapping capabilities."
+    },
+    {
+      "title": "IEEE Student Branch Projects",
+      "year": 2022,
+      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+      "description": "Established first IEEE Student Branch at community college level, winning first place in EPICS competition through innovative engineering solutions."
+    },
+    {
+      "title": "Community Tours Application",
+      "year": 2021,
+      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+      "description": "Developed front-end components using React and Javascript, implementing responsive design and translating Figma designs to code."
+    },
+    {
+      "title": "VEX Robotics Programming System",
+      "year": 2023,
+      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+      "description": "Created advanced programming curriculum for VEX robotics, focusing on C++, distributed computing, and real-time data processing."
+    },
+    {
+      "title": "Data Structures Tutoring Platform",
+      "year": 2022,
+      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+      "description": "Developed comprehensive learning materials for computer science concepts, including C++, Python, data structures, and algorithms."
+    },
+    {
+      "title": "Patent Design Innovation System",
+      "year": 2023,
+      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+      "description": "Created framework for patent development process, guiding students through ideation and filing procedures for software innovations."
+    },
+    {
+      "title": "Profile Analysis Engine",
+      "year": 2024,
+      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+      "description": "Integrated Large Language Models to enhance AI Analysis and Recommendation Engine, implementing RESTful APIs and scalable services."
+    },
+    {
+      "title": "STEM Education Portal",
+      "year": 2022,
+      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+      "description": "Developed educational platform promoting STEM through hands-on projects, leading to Club Excellence Award for innovative teaching methods."
+    },
+    {
+      "title": "Pollution Mapping Drone System",
+      "year": 2023,
+      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+      "description": "Created system for mapping environmental data through geolocation, presented at IEEE Rising Stars Conference securing $10,000 funding."
+    }
+  ]
