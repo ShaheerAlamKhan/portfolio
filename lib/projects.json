@@ -6,13 +6,13 @@
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque voluptatibus vitae reprehenderit necessitatibus commodi laborum incidunt deserunt veniam ratione tempore."
     },
     {
-      "title": "Recipe Analysis Project",
+      "title": "The Kaizen Academy",
       "year": 2024,
       "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Led data analysis of recipe popularity, performed exploratory data analysis, and developed machine learning models achieving 0.82 F1 score."
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque voluptatibus vitae reprehenderit necessitatibus commodi laborum incidunt deserunt veniam ratione tempore."
     },
     {
-      "title": "AI Networking Tool",
+      "title":"Session AI",
       "year": 2023,
       "image": "https://vis-society.github.io/labs/2/images/empty.svg",
       "description": "Developed an AI-facilitated networking tool combining profile data and smart device locations, utilizing Pinecone and OpenAI's Embedding API."

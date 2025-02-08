@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
-    <link rel="stylesheet" href="../style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects</title>
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <header>
-        <h1 class="projects-title">My Projects</h1>
-    </header>
-    <div class="projects"></div>
-    <footer>
-        <p>&copy; 2025 Shaheer Khan. All Rights Reserved.</p>
-    </footer>
-    <script src="../global.js" type="module"></script>
-    <script src="projects.js" type="module"></script>
+  <header>
+    <h1 class="projects-title">My Projects</h1>
+  </header>
+
+  
+  <div class="legend-container">
+    <svg id="projects-pie-plot" viewBox="-50 -50 100 100"></svg>
+    <ul class="legend"></ul>
+  </div>
+
+  <input 
+    class="searchBar" 
+    type="search" 
+    aria-label="Search projects" 
+    placeholder=" Search projects…">
+
+  <div class="projects"></div>
+
+  <footer>
+    <p>&copy; 2025 Shaheer Khan. All Rights Reserved.</p>
+  </footer>
+
+  <script src="../global.js" type="module"></script>
+  <script src="projects.js" type="module"></script>
 </body>
 </html>
