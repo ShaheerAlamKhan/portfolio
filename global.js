@@ -9,7 +9,8 @@ const pages = [
   { url: 'index.html', title: 'Home' },
   { url: 'projects/index.html', title: 'Projects' },
   { url: 'contact/index.html', title: 'Contact' },
-  { url: 'resume/index.html', title: 'Resume' }
+  { url: 'resume/index.html', title: 'Resume' },
+  { url: "meta/index.html", title: 'Meta' }
 ];
 
 // Check if we're on the home page by looking for the 'home' class
