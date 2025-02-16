@@ -4,9 +4,11 @@
   "description": "My portfolio repository",
   "main": "index.js",
   "scripts": {
-    "generate-loc": "node generate-loc.js"
+    "generate-loc": "node generate-loc.js",
+    "dev": "live-server"
   },
   "devDependencies": {
+    "live-server": "^1.2.2",
     "simple-git": "^3.27.0"
   },
   "author": "Shaheer Khan",

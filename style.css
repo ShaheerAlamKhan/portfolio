@@ -288,4 +288,45 @@
   padding: 0.5em;
   font-size: 1em;
   }
+/* Meta */
+  dl.stats {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5em;
+    margin: 0;
+  }
+  
+  dl.stats dt {
+    color: #666;
+    font-weight: normal;
+  }
+  
+  dl.stats dd {
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .tooltip {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1em;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+    transition: opacity 200ms;
+  }
+  
+  .selection {
+    fill-opacity: 0.1;
+    stroke: black;
+    stroke-opacity: 0.7;
+    stroke-dasharray: 5 3;
+    animation: marching-ants 2s linear infinite;
+  }
+  
+  @keyframes marching-ants {
+    to {
+      stroke-dashoffset: -8;
+    }
+  }
   
