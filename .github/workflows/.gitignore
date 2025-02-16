@@ -1,0 +1,18 @@
+# Node modules
+node_modules/
+
+# Generated files
+meta/loc.csv
+
+# Environment variables
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
