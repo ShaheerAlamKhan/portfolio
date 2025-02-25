@@ -2,16 +2,23 @@
     {
       "title": "VESPO",
       "year": 2025,
-      "image": "../image/vespo.png",
+      "image": "./portfolio/image/vespo.png",
       "link" : "https://shaheeralamkhan.github.io/VESPO/",
       "description": "A tool for Visual Exploration of Surgical Procedures and Outcomes using data from a Korean Hospital."
     },
     {
       "title": "The Kaizen Academy",
       "year": 2024,
-      "image": "../image/child-studying.png",
+      "image": "./portfolio/image/child-studying.png",
       "link" : "https://thekaizenacademy.com",
       "description": "Elite private tutoring and life-coaching services tailored to your unique learning style."
+    },
+    {
+      "title": "Bike Trax",
+      "year": 2025,
+      "image": "./portfolio/image/bike.png",
+      "link" : "https://shaheeralamkhan.github.io/BikeAnalysis/",
+      "description": "Developed an immersive, interactive map visualization of bike traffic in the Boston area during different times of the day."
     },
     {
       "title":"Session AI",
@@ -20,7 +27,7 @@
       "description": "Developed an AI-facilitated networking tool combining profile data and smart device locations, utilizing Pinecone and OpenAI's Embedding API."
     },
     {
-      "title": "Environmental Monitoring Drone",
+      "title": "Project DIANA",
       "year": 2023,
       "image": "https://vis-society.github.io/labs/2/images/empty.svg",
       "description": "Led development of a drone system for detecting nitrogen pollution and volatile organic compounds with geolocation mapping capabilities."
@@ -30,13 +37,6 @@
       "year": 2022,
       "image": "https://vis-society.github.io/labs/2/images/empty.svg",
       "description": "Established first IEEE Student Branch at community college level, winning first place in EPICS competition through innovative engineering solutions."
-    },
-    {
-      "title": "Bike Trax",
-      "year": 2025,
-      "image": "../image/bike.png",
-      "link" : "https://shaheeralamkhan.github.io/BikeAnalysis/",
-      "description": "Developed an immersive, interactive map visualization of bike traffic in the Boston area during different times of the day."
     },
     {
       "title": "VEX Robotics Programming System",
@@ -57,9 +57,10 @@
       "description": "Created framework for patent development process, guiding students through ideation and filing procedures for software innovations."
     },
     {
-      "title": "Profile Analysis Engine",
+      "title": "Resume Analysis Engine",
       "year": 2024,
       "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+      "link": "https://quickcruit.ai/",
       "description": "Integrated Large Language Models to enhance AI Analysis and Recommendation Engine, implementing RESTful APIs and scalable services."
     },
     {
