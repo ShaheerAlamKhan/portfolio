@@ -152,7 +152,7 @@ export function updateProjectCount(projects) {
   }
 }
 
-// renderProjects function
+// Updated renderProjects function with clickable project tiles
 export function renderProjects(projects, containerElement, headingLevel = 'h2') {
   containerElement.innerHTML = '';
   projects.forEach(project => {
