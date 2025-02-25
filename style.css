@@ -330,3 +330,29 @@
     }
   }
   
+  /* Clickable project styles */
+.projects article.clickable {
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.projects article.clickable:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.project-link {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  height: 100%;
+}
+
+.projects article.clickable::after {
+  content: "↗";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.2em;
+  color: var(--nav-border-accent);
+}

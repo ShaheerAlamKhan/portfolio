@@ -157,12 +157,27 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
   containerElement.innerHTML = '';
   projects.forEach(project => {
     const article = document.createElement('article');
-    article.innerHTML = `
+    
+    // Create the inner HTML content
+    const innerContent = `
       <${headingLevel}>${project.title}</${headingLevel}>
       <p>${project.year}</p>
       <img src="${project.image}" alt="${project.title}">
       <p>${project.description}</p>
     `;
+    
+    // If the project has a link, wrap the entire content in an anchor tag
+    if (project.link) {
+      article.classList.add('clickable');
+      article.innerHTML = `
+        <a href="${project.link}" target="_blank" class="project-link">
+          ${innerContent}
+        </a>
+      `;
+    } else {
+      article.innerHTML = innerContent;
+    }
+    
     containerElement.appendChild(article);
   });
 }

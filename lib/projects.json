@@ -1,15 +1,17 @@
 [
     {
-      "title": "Climate Data Visualisation",
-      "year": 2024,
-      "image": "../image/climate.svg",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque voluptatibus vitae reprehenderit necessitatibus commodi laborum incidunt deserunt veniam ratione tempore."
+      "title": "VESPO",
+      "year": 2025,
+      "image": "../image/vespo.png",
+      "link" : "https://shaheeralamkhan.github.io/VESPO/",
+      "description": "A tool for Visual Exploration of Surgical Procedures and Outcomes using data from a Korean Hospital."
     },
     {
       "title": "The Kaizen Academy",
       "year": 2024,
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque voluptatibus vitae reprehenderit necessitatibus commodi laborum incidunt deserunt veniam ratione tempore."
+      "image": "../image/child-studying.png",
+      "link" : "https://thekaizenacademy.com",
+      "description": "Elite private tutoring and life-coaching services tailored to your unique learning style."
     },
     {
       "title":"Session AI",
@@ -30,10 +32,11 @@
       "description": "Established first IEEE Student Branch at community college level, winning first place in EPICS competition through innovative engineering solutions."
     },
     {
-      "title": "Community Tours Application",
-      "year": 2021,
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Developed front-end components using React and Javascript, implementing responsive design and translating Figma designs to code."
+      "title": "Bike Trax",
+      "year": 2025,
+      "image": "../image/bike.png",
+      "link" : "https://shaheeralamkhan.github.io/BikeAnalysis/",
+      "description": "Developed an immersive, interactive map visualization of bike traffic in the Boston area during different times of the day."
     },
     {
       "title": "VEX Robotics Programming System",
