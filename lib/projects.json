@@ -2,21 +2,21 @@
     {
       "title": "VESPO",
       "year": 2025,
-      "image": "./portfolio/image/vespo.png",
+      "image": "../image/vespo.png",
       "link" : "https://shaheeralamkhan.github.io/VESPO/",
       "description": "A tool for Visual Exploration of Surgical Procedures and Outcomes using data from a Korean Hospital."
     },
     {
       "title": "The Kaizen Academy",
       "year": 2024,
-      "image": "./portfolio/image/child-studying.png",
+      "image": "../image/child-studying.png",
       "link" : "https://thekaizenacademy.com",
       "description": "Elite private tutoring and life-coaching services tailored to your unique learning style."
     },
     {
       "title": "Bike Trax",
       "year": 2025,
-      "image": "./portfolio/image/bike.png",
+      "image": "../image/bike.png",
       "link" : "https://shaheeralamkhan.github.io/BikeAnalysis/",
       "description": "Developed an immersive, interactive map visualization of bike traffic in the Boston area during different times of the day."
     },
