@@ -544,3 +544,65 @@ dl.stats dd {
       flex-basis: 100%;
   }
 }
+
+:root {
+  /* Add these new variables for container colors that change with theme */
+  --stats-bg-color: rgba(18, 18, 18, 0.9);
+  --github-stats-bg: linear-gradient(90deg, #2020, black, #2020);
+  --stats-text-color: var(--nav-text);
+}
+
+/* Light mode adjustments */
+:root[color-scheme="light"] {
+  /* Override the container colors for light mode */
+  --stats-bg-color: rgba(255, 255, 255, 0.9);
+  --github-stats-bg: linear-gradient(90deg, #f0f0f0, white, #f0f0f0);
+  --stats-text-color: #333;
+}
+
+/* Update the profile-stats container to use the variable */
+#profile-stats {
+  width: 90%; /* Keep this the same */
+  margin: 2rem auto;
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  background-color: var(--stats-bg-color); /* Use the variable */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(4px);
+  max-width: 800px;
+}
+
+/* Center the images to match the profile stats width */
+#images {
+  width: 90%;
+  max-width: 800px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+/* Update github-stats to use the variable */
+.github-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 0;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  background: var(--github-stats-bg); /* Use the variable */
+}
+
+/* Update the dt color to use the variable */
+.github-stats dt {
+  font-size: 0.9em;
+  color: var(--stats-text-color); /* Use the variable */
+  margin-bottom: 0.25rem;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+/* Add a light mode border to make the containers stand out slightly */
+:root[color-scheme="light"] #profile-stats,
+:root[color-scheme="light"] .github-stats {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
