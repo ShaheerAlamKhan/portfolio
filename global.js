@@ -152,17 +152,45 @@ export function updateProjectCount(projects) {
   }
 }
 
-// Updated renderProjects function with clickable project tiles
+// Function to get properly formatted image path
+function getCorrectImagePath(imagePath) {
+  // Check if we're on GitHub Pages
+  const isGitHub = location.hostname.includes('github.io');
+  
+  // For GitHub Pages, add the /portfolio prefix
+  if (isGitHub) {
+    // Check if the path is already absolute (starts with http or /)
+    if (imagePath.startsWith('http') || imagePath.startsWith('/')) {
+      return imagePath;
+    }
+    
+    // If the path is relative and starts with ../, replace it with /portfolio/
+    if (imagePath.startsWith('../')) {
+      return '/portfolio/' + imagePath.substring(3);
+    }
+    
+    // Otherwise, add /portfolio/ to the beginning
+    return '/portfolio/' + imagePath;
+  }
+  
+  // For local development, return the path unchanged
+  return imagePath;
+}
+
+// Updated renderProjects function with fixed image paths
 export function renderProjects(projects, containerElement, headingLevel = 'h2') {
   containerElement.innerHTML = '';
   projects.forEach(project => {
     const article = document.createElement('article');
     
-    // Create the inner HTML content
+    // Get the correct image path based on environment
+    const imagePath = getCorrectImagePath(project.image);
+    
+    // Create the inner HTML content with the corrected image path
     const innerContent = `
       <${headingLevel}>${project.title}</${headingLevel}>
       <p>${project.year}</p>
-      <img src="${project.image}" alt="${project.title}">
+      <img src="${imagePath}" alt="${project.title}">
       <p>${project.description}</p>
     `;
     
@@ -194,3 +222,4 @@ document.addEventListener('DOMContentLoaded', () => {
     console.error('Error during initialization:', error);
   }
 });
+
