@@ -19,8 +19,35 @@
 
     <div id="stats"></div>
 
+    <div id="time-filter">
+      <label>
+        Show commits until: 
+        <input type="range" id="time-slider" min="0" max="100" value="100">
+        <time id="selectedTime"></time>
+      </label>
+    </div>
+
     <h2>Commits by time of day</h2>
-    <div id="chart"></div>
+    
+    <!-- Scrollytelling for commits -->
+    <div id="scrollytelling">
+      <div id="scroll-container">
+        <div id="spacer"></div>
+        <div id="items-container"></div>
+      </div>
+      <div id="chart"></div>
+    </div>
+
+    <h2>Files by Size</h2>
+    
+    <!-- Scrollytelling for files -->
+    <div id="files-scrollytelling">
+      <div class="files"></div>
+      <div id="files-scroll-container">
+        <div id="files-spacer"></div>
+        <div id="files-items-container"></div>
+      </div>
+    </div>
 
     <dl id="commit-tooltip" class="info tooltip" hidden>
       <dt>Commit</dt>
