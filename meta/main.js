@@ -11,8 +11,8 @@ let commitMaxTime;
 let filteredCommits = [];
 
 // Variables for scrollytelling
-let ITEM_HEIGHT = 120; // Height of each item in px (reduced for more items)
-let VISIBLE_COUNT = 20; // Increased number of visible items
+let ITEM_HEIGHT = 120; // Increased height for better spacing
+let VISIBLE_COUNT = 15; // Number of visible items
 
 async function loadData() {
   try {
@@ -370,7 +370,7 @@ function updateTooltipPosition(event) {
 
 // Scrollytelling implementation
 function setupScrollytelling() {
-  // Show all commits
+  // Show all commits - calculate total height
   const totalHeight = commits.length * ITEM_HEIGHT;
   
   const scrollContainer = d3.select('#scroll-container');
@@ -391,7 +391,7 @@ function setupScrollytelling() {
     syncTimeSliderWithScroll(startIndex);
   });
   
-  // Initial render - show all commits
+  // Initial render - show the first set of commits (oldest first)
   renderItems(0);
 }
 
@@ -420,7 +420,7 @@ function syncTimeSliderWithScroll(startIndex) {
     filteredCommits = commits.filter(commit => commit.datetime <= commitMaxTime);
     displayStats(filteredCommits);
     updateScatterplot(filteredCommits);
-    displayCommitFiles(filteredCommits);
+    // Don't call displayCommitFiles here as it's now called in renderItems
   }
 }
 
@@ -429,7 +429,7 @@ function renderItems(startIndex) {
   const itemsContainer = d3.select('#items-container');
   itemsContainer.selectAll('div').remove();
   
-  // Get visible commits slice - show all commits
+  // Get visible commits slice - oldest commits at the top
   const endIndex = Math.min(startIndex + VISIBLE_COUNT, commits.length);
   const visibleCommits = commits.slice(startIndex, endIndex);
   
@@ -461,6 +461,21 @@ function renderItems(startIndex) {
       </p>
     `);
   });
+  
+  // Update the file visualization to match the latest visible commit
+  if (visibleCommits.length > 0) {
+    // Use the most recent visible commit to filter files
+    const latestVisibleCommit = visibleCommits[visibleCommits.length - 1];
+    const timeOfLatestVisibleCommit = latestVisibleCommit.datetime;
+    
+    // Filter commits up to this point in time
+    const commitsUpToLatestVisible = commits.filter(commit => 
+      commit.datetime <= timeOfLatestVisibleCommit
+    );
+    
+    // Update the file visualization
+    displayCommitFiles(commitsUpToLatestVisible);
+  }
 }
 
 function displayCommitFiles(filteredCommits) {
@@ -468,9 +483,9 @@ function displayCommitFiles(filteredCommits) {
   const lines = filteredCommits.flatMap((d) => d.lines);
   fileTypeColors = d3.scaleOrdinal(d3.schemeTableau10);
   
-  // Group lines by file
+  // Group lines by file - only include files from the filtered commits
   let files = d3.groups(lines, (d) => d.file)
-    .filter(([name]) => name && name !== 'undefined') // Filter out undefined file names
+    .filter(([name]) => name && name !== 'undefined')
     .map(([name, lines]) => {
       return { name, lines };
     });
@@ -481,36 +496,38 @@ function displayCommitFiles(filteredCommits) {
   // Clear and update the file display
   d3.select('.files').selectAll('div').remove();
   
-  // Create file visualization
+  // Create file visualization with transition effects
   let filesContainer = d3.select('.files')
     .selectAll('div')
-    .data(files)
+    .data(files, d => d.name) // Use file name as key for better transitions
     .enter()
     .append('div')
-    .attr('class', 'file-entry');
+    .attr('class', 'file-entry')
+    .style('opacity', 0)
+    .transition()
+    .duration(500)
+    .style('opacity', 1);
   
   // Add file names and line counts
-  filesContainer.append('dt')
+  filesContainer.selection().append('dt')
     .html(d => `<code>${d.name}</code><small>${d.lines.length} lines</small>`);
   
   // Add unit visualization (dots) for lines
-  const dotContainers = filesContainer.append('dd');
-  
-  // Add dots with delay for animation
-  dotContainers.each(function(d) {
-    const container = d3.select(this);
-    
-    d.lines.forEach((line, i) => {
-      container.append('div')
-        .attr('class', 'line')
-        .style('background', getFileColor(line.file))
-        .style('animation-delay', `${i * 5}ms`);
+  filesContainer.selection().append('dd')
+    .each(function(d) {
+      const container = d3.select(this);
+      
+      d.lines.forEach((line, i) => {
+        container.append('div')
+          .attr('class', 'line')
+          .style('background', getFileColor(line.file))
+          .style('animation-delay', `${i * 2}ms`); // Faster animation
+      });
     });
-  });
   
   // Update the selection count
   document.getElementById('selection-count').textContent = 
-    filteredCommits.length > 0 ? `Showing ${filteredCommits.length} commits` : 'No commits selected';
+    filteredCommits.length > 0 ? `Showing codebase after ${filteredCommits.length} commits` : 'No commits selected';
 }
 
 function getFileColor(filename) {
@@ -521,6 +538,44 @@ function getFileColor(filename) {
   return fileTypeColors(ext);
 }
 
+function renderFileNarrative(startIndex) {
+  // Clear previous items
+  const filesItemsContainer = d3.select('#files-items-container');
+  filesItemsContainer.selectAll('div').remove();
+  
+  // Calculate visible range
+  const endIndex = Math.min(startIndex + VISIBLE_COUNT, commits.length);
+  const visibleCommits = commits.slice(startIndex, endIndex);
+  
+  // Create narrative items for each visible commit
+  visibleCommits.forEach((commit, idx) => {
+    const item = filesItemsContainer.append('div')
+      .attr('class', 'item')
+      .style('position', 'absolute')
+      .style('top', `${idx * ITEM_HEIGHT}px`)
+      .style('width', '100%')
+      .style('height', `${ITEM_HEIGHT - 10}px`);
+    
+    const formattedDate = commit.datetime.toLocaleString("en", {
+      dateStyle: "full", 
+      timeStyle: "short"
+    });
+    
+    // Generate narrative specific to this commit's file changes
+    const filesList = commit.files.length > 0
+      ? commit.files.map(file => `<li><code>${file}</code></li>`).join('')
+      : '<li><em>No files modified</em></li>';
+    
+    item.html(`
+      <h3>Commit on ${formattedDate}</h3>
+      <p>This commit modified ${commit.files.length} file${commit.files.length !== 1 ? 's' : ''} with a total of ${commit.totalLines} line changes:</p>
+      <ul class="files-modified">
+        ${filesList}
+      </ul>
+    `);
+  });
+}
+
 // Files scrollytelling implementation
 function setupFilesScrollytelling() {
   // Variables for files scrollytelling
@@ -528,32 +583,40 @@ function setupFilesScrollytelling() {
   const filesSpacer = d3.select('#files-spacer');
   const filesItemsContainer = d3.select('#files-items-container');
   
-  // Set height based on number of files
-  const uniqueFiles = new Set();
-  commits.forEach(commit => {
-    commit.files.forEach(file => uniqueFiles.add(file));
-  });
-  
-  const allFiles = Array.from(uniqueFiles);
-  
-  const numFiles = allFiles.length || 1;
-  const filesHeight = numFiles * ITEM_HEIGHT;
+  // Set height based on number of commits
+  const scrollHeight = commits.length * ITEM_HEIGHT;
   
   // Set spacer height to create scrollable area
-  filesSpacer.style('height', `${filesHeight}px`);
+  filesSpacer.style('height', `${scrollHeight}px`);
   
   // Listen for scroll events
   fileScrollContainer.on('scroll', () => {
     const scrollTop = fileScrollContainer.property('scrollTop');
-    let fileIndex = Math.floor(scrollTop / ITEM_HEIGHT);
-    fileIndex = Math.max(0, Math.min(fileIndex, numFiles - VISIBLE_COUNT));
     
-    renderFileItems(fileIndex, allFiles);
+    // Calculate which range of commits to display in narrative
+    let startIndex = Math.floor(scrollTop / ITEM_HEIGHT);
+    startIndex = Math.max(0, Math.min(startIndex, commits.length - VISIBLE_COUNT));
+    
+    // Calculate commit index for file visualization (based on last visible in window)
+    const visibleCommits = commits.slice(startIndex, startIndex + VISIBLE_COUNT);
+    const latestVisibleCommit = visibleCommits[visibleCommits.length - 1];
+    
+    // Find index of this commit
+    const commitIndex = commits.findIndex(c => c.id === latestVisibleCommit.id);
+    
+    // Show the state of the codebase up to this commit
+    const commitsUpToPoint = commits.slice(0, commitIndex + 1);
+    displayCommitFiles(commitsUpToPoint);
+    
+    // Update the narrative in the files scroll container
+    renderFileNarrative(startIndex);
   });
   
-  // Initial render - show all files
-  renderFileItems(0, allFiles);
+  // Initial render showing the first commit only
+  displayCommitFiles(commits.slice(0, 1));
+  renderFileNarrative(0);
 }
+
 
 function renderFileItems(startIndex, allFiles) {
   // Clear previous items
@@ -599,7 +662,7 @@ function renderFileItems(startIndex, allFiles) {
       .style('position', 'absolute')
       .style('top', `${idx * ITEM_HEIGHT}px`)
       .style('width', '100%')
-      .style('height', `${ITEM_HEIGHT - 10}px`); // Set explicit height with small gap
+      .style('height', `${ITEM_HEIGHT - 10}px`);
     
     // Get commits that modified this file
     const fileCommits = commits.filter(commit => commit.files.includes(file));

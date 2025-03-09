@@ -41,20 +41,20 @@
       <div id="chart"></div>
     </div>
 
-    <!-- Files by Size section with completely separate scrollytelling container -->
     <h2>Files by Size</h2>
     <div id="files-scrollytelling">
-      <!-- Left side: File visualization -->
-      <div class="files-container">
-        <div class="files"></div>
-      </div>
-      
-      <!-- Right side: Scrollytelling for files -->
-      <div id="files-scroll-container">
-        <div id="files-spacer"></div>
-        <div id="files-items-container"></div>
-      </div>
+  <!-- Left side: File visualization animation display (no scrollbar) -->
+    <div class="files-container">
+      <div class="files-animation-title">Codebase Evolution</div>
+      <div class="files"></div>
     </div>
+  
+  <!-- Right side: Scrollytelling control for files animation -->
+  <div id="files-scroll-container">
+      <div id="files-spacer"></div>
+      <div id="files-items-container"></div>
+    </div>
+  </div>
 
     <!-- Tooltips and helper elements -->
     <dl id="commit-tooltip" class="info tooltip" hidden>
