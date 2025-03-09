@@ -41,6 +41,11 @@
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
   
+  /* Stats container colors */
+  --stats-bg-color: rgba(18, 18, 18, 0.9);
+  --github-stats-bg: linear-gradient(90deg, #2020, black, #2020);
+  --stats-text-color: var(--nav-text);
+  
   color-scheme: light dark;
 }
 
@@ -51,6 +56,13 @@
   --card-background: #1f1f1f;
   --card-text: white;
   --card-shadow: rgba(0, 0, 0, 0.4);
+}
+
+/* Light mode adjustments */
+:root[color-scheme="light"] {
+  --stats-bg-color: rgba(255, 255, 255, 0.9);
+  --github-stats-bg: linear-gradient(90deg, #f0f0f0, white, #f0f0f0);
+  --stats-text-color: #333;
 }
 
 /* Base styles */
@@ -79,6 +91,11 @@ body {
   animation: fadeIn 0.5s ease-in-out;
 }
 
+/* Make meta page wider */
+:global(body) {
+  max-width: min(120ch, 80vw);
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -92,6 +109,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.1;
   text-wrap: balance;
   color: var(--text-color);
+  margin-top: 2rem;
 }
 
 h1 {
@@ -318,16 +336,16 @@ footer p {
   transform: scale(1.05);
 }
 
+/* Profile stats */
 #profile-stats {
-  width: 100%;
+  width: 90%;
   margin: 2rem auto;
   text-align: center;
   padding: 1.5rem;
   border-radius: var(--radius-lg);
-  background-color: rgba(18, 18, 18, 0.9);
+  background-color: var(--stats-bg-color);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(4px);
-  width: 90%;
   max-width: 800px;
 }
 
@@ -338,7 +356,7 @@ footer p {
   margin: 0;
   padding: 1rem;
   border-radius: var(--radius-lg);
-  background: linear-gradient(90deg, #2020, black, #2020);
+  background: var(--github-stats-bg);
 }
 
 .github-stats .stat {
@@ -349,7 +367,7 @@ footer p {
 
 .github-stats dt {
   font-size: 0.9em;
-  color: var(--nav-text);
+  color: var(--stats-text-color);
   margin-bottom: 0.25rem;
   opacity: 0.8;
   font-weight: 500;
@@ -360,6 +378,20 @@ footer p {
   font-size: 1.6em;
   font-weight: 700;
   color: var(--color-accent-secondary);
+}
+
+/* Add a light mode border */
+:root[color-scheme="light"] #profile-stats,
+:root[color-scheme="light"] .github-stats {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Center the images */
+#images {
+  width: 90%;
+  max-width: 800px;
+  margin: 2rem auto;
+  text-align: center;
 }
 
 /* General image enhancements */
@@ -393,7 +425,6 @@ img {
   flex-wrap: nowrap;
   background-color: rgba(255, 255, 255, 0.02);
   border-radius: var(--radius-lg);
-  padding: 2rem;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
@@ -454,326 +485,8 @@ img {
   transform: scale(1.02);
 }
 
-/* Meta */
-dl.stats {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.5em;
-  margin: 0;
-}
+/* Meta Page Styles */
 
-dl.stats dt {
-  color: #666;
-  font-weight: normal;
-}
-
-dl.stats dd {
-  margin: 0;
-  font-weight: bold;
-}
-
-.tooltip {
-  position: fixed;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 1em;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
-  pointer-events: none;
-  transition: opacity 200ms;
-  z-index: 1000;
-}
-
-.selection {
-  fill-opacity: 0.1;
-  stroke: black;
-  stroke-opacity: 0.7;
-  stroke-dasharray: 5 3;
-  animation: marching-ants 2s linear infinite;
-}
-
-@keyframes marching-ants {
-  to {
-      stroke-dashoffset: -8;
-  }
-}
-
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-  h1 {
-      font-size: 300%;
-  }
-  
-  nav {
-      flex-wrap: wrap;
-  }
-  
-  nav a {
-      flex-basis: 40%;
-  }
-  
-  .legend-container {
-      flex-direction: column;
-      align-items: center;
-  }
-  
-  #profile-stats {
-      padding: 1rem;
-  }
-  
-  .github-stats {
-      flex-wrap: wrap;
-      gap: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  h1 {
-      font-size: 250%;
-  }
-  
-  body {
-      padding: 0.5em;
-  }
-  
-  .projects {
-      gap: 1em;
-      padding: 1em;
-  }
-  
-  nav a {
-      flex-basis: 100%;
-  }
-}
-
-:root {
-  /* Add these new variables for container colors that change with theme */
-  --stats-bg-color: rgba(18, 18, 18, 0.9);
-  --github-stats-bg: linear-gradient(90deg, #2020, black, #2020);
-  --stats-text-color: var(--nav-text);
-}
-
-/* Light mode adjustments */
-:root[color-scheme="light"] {
-  /* Override the container colors for light mode */
-  --stats-bg-color: rgba(255, 255, 255, 0.9);
-  --github-stats-bg: linear-gradient(90deg, #f0f0f0, white, #f0f0f0);
-  --stats-text-color: #333;
-}
-
-/* Update the profile-stats container to use the variable */
-#profile-stats {
-  width: 90%; /* Keep this the same */
-  margin: 2rem auto;
-  text-align: center;
-  padding: 1.5rem;
-  border-radius: var(--radius-lg);
-  background-color: var(--stats-bg-color); /* Use the variable */
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(4px);
-  max-width: 800px;
-}
-
-/* Center the images to match the profile stats width */
-#images {
-  width: 90%;
-  max-width: 800px;
-  margin: 2rem auto;
-  text-align: center;
-}
-
-/* Update github-stats to use the variable */
-.github-stats {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin: 0;
-  padding: 1rem;
-  border-radius: var(--radius-lg);
-  background: var(--github-stats-bg); /* Use the variable */
-}
-
-/* Update the dt color to use the variable */
-.github-stats dt {
-  font-size: 0.9em;
-  color: var(--stats-text-color); /* Use the variable */
-  margin-bottom: 0.25rem;
-  opacity: 0.8;
-  font-weight: 500;
-}
-
-/* Add a light mode border to make the containers stand out slightly */
-:root[color-scheme="light"] #profile-stats,
-:root[color-scheme="light"] .github-stats {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-/* Add these styles to your existing style.css file */
-
-/* Make the meta page wider */
-:global(body) {
-  max-width: min(120ch, 80vw);
-}
-
-/* Scrollytelling container */
-#scrollytelling {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: subgrid;
-}
-
-#scroll-container {
-  grid-column: 1;
-  position: relative;
-  width: 95%;
-  height: 350px;
-  overflow-y: scroll;
-  border: 1px solid #ccc;
-  margin-bottom: 50px;
-}
-
-#chart {
-  grid-column: 2;
-}
-
-#spacer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: none; /* transparent */
-  pointer-events: none;
-}
-
-#items-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-.item {
-  height: 80px;
-  padding: 10px;
-  box-sizing: border-box;
-  border-bottom: 2px solid #eee;
-  background-color: rgba(255, 255, 255, 0.8);
-}
-
-/* File size visualization */
-#files-scrollytelling {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: subgrid;
-}
-
-.files {
-  grid-column: 1;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.5em;
-  margin: 0;
-}
-
-.files > div {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: subgrid;
-}
-
-.files dt {
-  grid-column: 1;
-}
-
-.files dt small {
-  display: block;
-  font-size: 0.8em;
-  opacity: 0.7;
-  margin-top: 0.25em;
-}
-
-.files dd {
-  grid-column: 2;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: start;
-  align-content: start;
-  gap: 0.15em;
-  padding-top: 0.6em;
-  margin-left: 0;
-}
-
-.line {
-  display: flex;
-  width: 0.5em;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  transition: all 200ms, r calc(var(--r) * 100ms);
-}
-
-@starting-style {
-  .line {
-    r: 0;
-  }
-}
-
-#files-scroll-container {
-  grid-column: 2;
-  position: relative;
-  width: 95%;
-  height: 350px;
-  overflow-y: scroll;
-  border: 1px solid #ccc;
-  margin-bottom: 50px;
-}
-
-#files-spacer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: none; /* transparent */
-  pointer-events: none;
-}
-
-#files-items-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-/* For circles in scatter plot */
-circle {
-  transition: all 200ms;
-}
-
-@starting-style {
-  circle {
-    r: 0;
-  }
-}
-
-/* Enhanced stats display */
-.stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1em;
-  margin: 2em 0;
-  padding: 1em;
-  background: rgba(0,0,0,0.03);
-  border-radius: 8px;
-}
-
-.tooltip {
-  position: fixed;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 1em;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  pointer-events: none;
-  transition: opacity 200ms;
-  z-index: 1000;
-}
 /* Time slider styles */
 #time-filter {
   margin: 20px 0;
@@ -798,75 +511,141 @@ circle {
   font-weight: 500;
 }
 
-/* Make the meta page wider */
-:global(body) {
-  max-width: min(120ch, 80vw);
-}
-
-/* Scrollytelling container */
-#scrollytelling {
-  grid-column: 1 / -1;
+/* Enhanced stats display */
+.stats {
   display: grid;
-  grid-template-columns: subgrid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1em;
+  margin: 2em 0;
+  padding: 1em;
+  background: rgba(0,0,0,0.03);
+  border-radius: 8px;
 }
 
-#scroll-container {
-  grid-column: 1;
-  position: relative;
-  width: 95%;
-  height: 350px;
-  overflow-y: scroll;
-  border: 1px solid #ccc;
-  margin-bottom: 50px;
-}
-
-#chart {
-  grid-column: 2;
-}
-
-#spacer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: none; /* transparent */
-  pointer-events: none;
-}
-
-#items-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-.item {
-  height: 80px;
-  padding: 10px;
-  box-sizing: border-box;
-  border-bottom: 2px solid #eee;
-  background-color: rgba(255, 255, 255, 0.8);
-}
-
-/* File size visualization */
-#files-scrollytelling {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: subgrid;
-}
-
-.files {
-  grid-column: 1;
+dl.stats {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 0.5em;
   margin: 0;
 }
 
+dl.stats dt {
+  color: #666;
+  font-weight: normal;
+}
+
+dl.stats dd {
+  margin: 0;
+  font-weight: bold;
+}
+
+/* Evolution content styles */
+#evolution-content {
+  margin: 1rem 0 2rem;
+}
+
+#evolution-content article {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-left: 3px solid #6e2cde;
+  background: rgba(0,0,0,0.02);
+  border-radius: 0 8px 8px 0;
+}
+
+#evolution-content article a {
+  color: #6e2cde;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#evolution-content article a:hover {
+  text-decoration: underline;
+}
+
+/* Meta visualization layout */
+.meta-visualization-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.meta-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.meta-column h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+#evolution-content {
+  margin: 0;
+  max-height: 500px;
+  overflow-y: auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+#chart {
+  width: 100%;
+  height: 500px;
+  margin: 0;
+}
+
+/* Circle animations */
+circle {
+  transition: all 200ms;
+}
+
+@starting-style {
+  circle {
+    r: 0;
+  }
+}
+
+/* Tooltip */
+.tooltip {
+  position: fixed;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  transition: opacity 200ms;
+  z-index: 1000;
+}
+
+/* Selection */
+.selection {
+  fill-opacity: 0.1;
+  stroke: black;
+  stroke-opacity: 0.7;
+  stroke-dasharray: 5 3;
+  animation: marching-ants 2s linear infinite;
+}
+
+@keyframes marching-ants {
+  to {
+    stroke-dashoffset: -8;
+  }
+}
+
+/* File visualization */
+.files {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem;
+  margin: 2rem 0;
+}
+
 .files > div {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: subgrid;
+  margin-bottom: 1rem;
 }
 
 .files dt {
@@ -902,64 +681,303 @@ circle {
 @starting-style {
   .line {
     r: 0;
+    transform: scale(0);
   }
 }
 
-#files-scroll-container {
-  grid-column: 2;
-  position: relative;
-  width: 95%;
-  height: 350px;
-  overflow-y: scroll;
-  border: 1px solid #ccc;
-  margin-bottom: 50px;
-}
-
-#files-spacer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: none; /* transparent */
-  pointer-events: none;
-}
-
-#files-items-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-/* For circles in scatter plot */
-circle {
-  transition: all 200ms;
-}
-
-@starting-style {
-  circle {
-    r: 0;
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 300%;
+  }
+  
+  nav {
+    flex-wrap: wrap;
+  }
+  
+  nav a {
+    flex-basis: 40%;
+  }
+  
+  .legend-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #profile-stats {
+    padding: 1rem;
+  }
+  
+  .github-stats {
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 }
 
-/* Enhanced stats display */
-.stats {
+@media (max-width: 480px) {
+  h1 {
+    font-size: 250%;
+  }
+  
+  body {
+    padding: 0.5em;
+  }
+  
+  .projects {
+    gap: 1em;
+    padding: 1em;
+  }
+  
+  nav a {
+    flex-basis: 100%;
+  }
+}
+
+
+/* Add these improved styles to your style.css file */
+
+/* Make meta page wider */
+:global(body) {
+  max-width: min(140ch, 85vw); /* Increased width for more space */
+}
+
+/* Enhanced Stats Dashboard */
+.stats-dashboard {
+  background: linear-gradient(to right, rgba(110, 44, 222, 0.1), rgba(45, 198, 255, 0.1));
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(110, 44, 222, 0.2);
+}
+
+.stats-dashboard h2 {
+  margin-top: 0;
+  color: var(--color-accent-primary);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1em;
-  margin: 2em 0;
-  padding: 1em;
-  background: rgba(0,0,0,0.03);
-  border-radius: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin: 0;
 }
 
-.tooltip {
-  position: fixed;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 1em;
+/* Improved Time Slider */
+#time-filter {
+  margin: 20px 0;
+  padding: 15px 20px;
+  background: linear-gradient(to right, rgba(110, 44, 222, 0.05), rgba(45, 198, 255, 0.05));
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(110, 44, 222, 0.1);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Scrollytelling layout with improved spacing */
+#scrollytelling, #files-scrollytelling {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* Give more space to the scatter plot */
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+#files-scrollytelling {
+  grid-template-columns: 2fr 1fr; /* Reverse for files section */
+}
+
+#scroll-container, #files-scroll-container {
+  position: relative;
+  width: 100%;
+  height: 400px; /* Increased height for more content */
+  overflow-y: scroll;
+  border: 1px solid rgba(110, 44, 222, 0.2);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.5);
+  scrollbar-width: thin;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Improved scrollytelling items */
+.item {
+  min-height: 70px; /* Reduced minimum height */
+  padding: 12px; /* Reduced padding */
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(110, 44, 222, 0.1);
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.item:hover {
+  background-color: rgba(110, 44, 222, 0.05);
+  transform: translateX(5px);
+}
+
+.item p {
+  margin: 0;
+  line-height: 1.4; /* Reduced line height */
+  font-size: 0.9rem; /* Smaller font size */
+  max-width: 100%; /* Ensure text doesn't overflow */
+  overflow-wrap: break-word; /* Allow long words to break */
+  color: #333; /* Darker text for better readability */
+}
+
+.item a {
+  color: var(--color-accent-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.item a:hover {
+  text-decoration: underline;
+  color: var(--color-accent-secondary);
+}
+
+/* Add spacing between paragraphs if there are multiple */
+.item p + p {
+  margin-top: 0.5rem;
+}
+
+/* Enhanced scatter plot */
+#chart {
+  width: 100%;
+  height: 500px; /* Increased height */
+}
+
+#chart svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Axis label styling */
+.axis-label {
+  font-size: 12px;
+  font-weight: 500;
+  fill: #666;
+}
+
+/* Make grid lines lighter */
+.gridlines line {
+  stroke: rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced file visualization */
+.files-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid rgba(110, 44, 222, 0.2);
+  box-shadow: var(--shadow-sm);
+  max-height: 400px; /* Match height of scroll container */
+  overflow-y: auto;
+}
+
+.files {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.file-entry {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.file-entry dt code {
+  font-size: 0.85em; /* Smaller code font */
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono', 'Droid Sans Mono', monospace;
+  word-break: break-all; /* Allow long filenames to break */
+}
+
+/* Make the dots smaller and tighter */
+.line {
+  display: flex;
+  width: 0.4em; /* Smaller dots */
+  aspect-ratio: 1;
+  border-radius: 50%;
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+  margin: 0.1em; /* Tighter spacing */
+}
+
+/* Dark mode adjustments */
+:root[color-scheme="dark"] .item p {
+  color: #ddd; /* Lighter text in dark mode */
+}
+
+:root[color-scheme="dark"] .axis-label {
+  fill: #aaa;
+}
+
+:root[color-scheme="dark"] .gridlines line {
+  stroke: rgba(255, 255, 255, 0.1);
+}
+
+/* Add or modify these styles in your style.css file */
+
+/* Fix scrollytelling container heights */
+#scroll-container, #files-scroll-container {
+  position: relative;
+  width: 100%;
+  height: 500px; /* Increased height for more content */
+  overflow-y: scroll;
+  border: 1px solid rgba(110, 44, 222, 0.2);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.5);
+  scrollbar-width: thin;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Fix overlapping items */
+.item {
+  position: absolute;
+  min-height: 110px; /* Match this to ITEM_HEIGHT - 10 */
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(110, 44, 222, 0.1);
+  background-color: rgba(255, 255, 255, 0.95); /* More opaque background */
+  overflow: hidden; /* Prevent text overflow */
+  width: 100%;
+}
+
+/* Ensure text stays in bounds */
+.item p {
+  margin: 0;
+  line-height: 1.3;
+  font-size: 0.9rem;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #333;
+}
+
+/* Create space between items */
+#items-container, #files-items-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure the spacer accounts for the taller item height */
+#spacer, #files-spacer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: none;
   pointer-events: none;
-  transition: opacity 200ms;
-  z-index: 1000;
 }

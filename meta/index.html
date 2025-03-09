@@ -10,15 +10,18 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
   </head>
   <body>
-
     <h1>Meta</h1>
     <p>
-      This page shows a meta-analysis of my repository, including lines of code
-      statistics and commit analysis.
+      This page includes stats about the code of this website.
     </p>
 
-    <div id="stats"></div>
+    <!-- Summary Statistics in an attractive dashboard -->
+    <div class="stats-dashboard">
+      <h2>Repository Statistics</h2>
+      <div id="stats" class="stats-grid"></div>
+    </div>
 
+    <!-- Time Slider -->
     <div id="time-filter">
       <label>
         Show commits until: 
@@ -27,28 +30,33 @@
       </label>
     </div>
 
-    <h2>Commits by time of day</h2>
-    
-    <!-- Scrollytelling for commits -->
+    <!-- Scrollytelling for Commits Over Time -->
+    <h2>Repository Evolution</h2>
     <div id="scrollytelling">
       <div id="scroll-container">
         <div id="spacer"></div>
         <div id="items-container"></div>
       </div>
+      <!-- Scatter plot -->
       <div id="chart"></div>
     </div>
 
+    <!-- Files by Size section with completely separate scrollytelling container -->
     <h2>Files by Size</h2>
-    
-    <!-- Scrollytelling for files -->
     <div id="files-scrollytelling">
-      <div class="files"></div>
+      <!-- Left side: File visualization -->
+      <div class="files-container">
+        <div class="files"></div>
+      </div>
+      
+      <!-- Right side: Scrollytelling for files -->
       <div id="files-scroll-container">
         <div id="files-spacer"></div>
         <div id="files-items-container"></div>
       </div>
     </div>
 
+    <!-- Tooltips and helper elements -->
     <dl id="commit-tooltip" class="info tooltip" hidden>
       <dt>Commit</dt>
       <dd>
